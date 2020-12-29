@@ -4,7 +4,11 @@
  */
 package ch.bbw.yr.model;
 
+import zone.nora.slothpixel.Slothpixel;
+import zone.nora.slothpixel.player.Player;
 import zone.nora.slothpixel.player.status.PlayerStatus;
+import zone.nora.slothpixel.skyblock.players.SkyblockPlayer;
+import zone.nora.slothpixel.skyblock.profiles.SkyblockProfile;
 
 public class PlayerData {
     //Standard stats
@@ -16,12 +20,18 @@ public class PlayerData {
     private int totalDeaths;
     private int totalKills;
 
-    public PlayerData(int karma, PlayerStatus playerStatus, double coinPurse, int totalDeaths, int totalKills) {
-        this.karma = karma;
+    public PlayerData(String username) {
+        Slothpixel slothpixel = new Slothpixel();
+        Player player = slothpixel.getPlayer(username);
+        PlayerStatus playerStatus = slothpixel.getPlayerStatus(username);
+        SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(username);
+        SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(player.getUuid());
+
+        karma = player.getKarma();
         this.playerStatus = playerStatus;
-        this.coinPurse = coinPurse;
-        this.totalDeaths = totalDeaths;
-        this.totalKills = totalKills;
+        coinPurse = skyblockPlayer.getCoinPurse();
+         totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
+         totalKills = skyblockPlayer.getStats().getTotalKills();
     }
 
     public int getKarma() {
