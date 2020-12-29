@@ -5,6 +5,7 @@
 package ch.bbw.yr.controller;
 
 import ch.bbw.yr.model.PlayerData;
+import ch.bbw.yr.model.timers.TimerCollection;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,5 +20,8 @@ public class ApiController {
         return new PlayerData(username);
     }
 
+    @GetMapping("/timers")
+    public TimerCollection getAllTimers(){
+        return new TimerCollection();
     }
 }
