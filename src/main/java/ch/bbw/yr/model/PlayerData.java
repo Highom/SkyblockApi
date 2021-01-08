@@ -15,6 +15,8 @@ import zone.nora.slothpixel.skyblock.profiles.SkyblockProfile;
 public class PlayerData {
     //Standard stats
     private int karma;
+    private long lastLogout;
+    private String lastGame;
     private PlayerStatus playerStatus;
 
     //Skyblock stats
@@ -31,10 +33,13 @@ public class PlayerData {
         PlayerStatus playerStatus = slothpixel.getPlayerStatus(username);
         SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(username);
         SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(player.getUuid());
+
         MojangDAO mojangDAO = new MojangDAO();
         UserProfile userProfile = mojangDAO.getUserProfile(username);
 
         karma = player.getKarma();
+        lastLogout = player.getLastLogout();
+        lastGame = player.getLastGame();
         this.playerStatus = playerStatus;
         coinPurse = skyblockPlayer.getCoinPurse();
         totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
@@ -48,6 +53,22 @@ public class PlayerData {
 
     public void setKarma(int karma) {
         this.karma = karma;
+    }
+
+    public long getLastLogout() {
+        return lastLogout;
+    }
+
+    public void setLastLogout(long lastLogout) {
+        this.lastLogout = lastLogout;
+    }
+
+    public String getLastGame() {
+        return lastGame;
+    }
+
+    public void setLastGame(String lastGame) {
+        this.lastGame = lastGame;
     }
 
     public PlayerStatus getPlayerStatus() {
@@ -94,6 +115,8 @@ public class PlayerData {
     public String toString() {
         return "PlayerData{" +
                 "karma=" + karma +
+                ", lastLogout=" + lastLogout +
+                ", lastGame='" + lastGame + '\'' +
                 ", playerStatus=" + playerStatus +
                 ", coinPurse=" + coinPurse +
                 ", totalDeaths=" + totalDeaths +
