@@ -34,3 +34,37 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### React ###
+src/main/skyblockfrontend/node_modules
+src/main/skyblockfrontend/ncp-debug.log
+src/main/skyblockfrontend/npm-debug.log
+src/main/skyblockfrontend/bower_component
+src/main/skyblockfrontend/src/config/configSec.js
+
+src/main/skyblockfrontend/.DS_STORE
+*~
+*.pyc
+src/main/skyblockfrontend/static
+src/main/skyblockfrontend/.grunt
+src/main/skyblockfrontend/_SpecRunner.html
+src/main/skyblockfrontend/__benchmarks__
+src/main/skyblockfrontend/build/
+src/main/skyblockfrontend/coverage/
+src/main/skyblockfrontend/.module-cache
+src/main/skyblockfrontend/*.gem
+src/main/skyblockfrontend/docs/.bundle
+src/main/skyblockfrontend/docs/code
+src/main/skyblockfrontend/docs/_site
+src/main/skyblockfrontend/docs/.sass-cache
+src/main/skyblockfrontend/docs/js/*
+src/main/skyblockfrontend/docs/downloads
+src/main/skyblockfrontend/docs/vendor/bundle
+src/main/skyblockfrontend/examples/shared/*.js
+src/main/skyblockfrontend/test/the-files-to-test.generated.js
+src/main/skyblockfrontend/*.log*
+src/main/skyblockfrontend/chrome-user-data
+src/main/skyblockfrontend/*.sublime-project
+src/main/skyblockfrontend/*.sublime-workspace
+src/main/skyblockfrontend/.idea
+src/main/skyblockfrontend/*.iml
