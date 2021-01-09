@@ -1,0 +1,3 @@
+- fix the PlayerDataContainer
+- Test if localStorage has a name in it. If not ask for name
+- have a "change name button so People can easily change the name saved in the local storage"
