@@ -68,3 +68,4 @@ src/main/skyblockfrontend/*.sublime-project
 src/main/skyblockfrontend/*.sublime-workspace
 src/main/skyblockfrontend/.idea
 src/main/skyblockfrontend/*.iml
+.eslintcache
