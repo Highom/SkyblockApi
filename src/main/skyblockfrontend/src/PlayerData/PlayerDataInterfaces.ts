@@ -3,6 +3,10 @@ export interface PlayerData{
     lastLogout: number;
     lastGame: string;
     playerStatus: PlayerStatus;
+    coinPurse: number;
+    totalDeaths: number;
+    totalKills: number;
+    uuid: string;
 }
 
 export interface PlayerStatus{
