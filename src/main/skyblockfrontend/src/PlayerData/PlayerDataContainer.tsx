@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PlayerDataView from "./PlayerDataView";
-import Axios from 'axios';
+import Axios from "axios";
+import { PlayerData } from "./PlayerDataInterfaces";
+import { waitFor } from "@testing-library/react";
 
 
-const [playerData,setPlayerData] = useState([]);
+let playerDataDefined: PlayerData;
 
-useEffect( () =>{
-    Axios.get(`http://localhost:8080/player?username=${localStorage.getItem('name')}`)
-    .then(res => { setPlayerData(res.data)})
-    .catch( err => {console.log(err)});
-}, [])
 
 const PlayerDataContainer: React.FC = () => {
+    const [playerData,setPlayerData] = useState<PlayerData>();
+
+    Axios.get<PlayerData>(`http://localhost:8080/player?username=${localStorage.getItem('username')}`).then(( res => { setPlayerData(res.data)})).catch( err => {console.log(err)});
+    
+    if(playerData !== undefined)
+    {
+        playerDataDefined = playerData;
+    }
     return (
-        //Currently not working. Need to figure out how to get the returned json into the PlayerData Interface. 
-        <PlayerDataView playerData={playerData}/>
+        <PlayerDataView playerData={playerDataDefined}/>
     );
 };
 
