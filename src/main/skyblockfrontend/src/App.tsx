@@ -2,11 +2,13 @@
 import React from 'react';
 import './App.css';
 import PlayerDataContainer from './PlayerData/PlayerDataContainer';
+import TimerCollectionContainer from './TimerCollection/TimerCollectionContainer';
 
 function App() {
   return (
     <div className="App">
       <PlayerDataContainer />
+      <TimerCollectionContainer />
     </div>
   );
 }
