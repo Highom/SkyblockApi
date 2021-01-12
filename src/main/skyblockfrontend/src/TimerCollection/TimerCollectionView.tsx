@@ -2,6 +2,7 @@
 import React from "react";
 import { TimerCollection } from "./TimerCollectionInterfaces";
 import { formatDuration, intervalToDuration } from 'date-fns'
+import { Typography } from "@material-ui/core";
 
 export interface TimerCollectionViewProps{
     timerCollection: TimerCollection;
@@ -11,12 +12,12 @@ export interface TimerCollectionViewProps{
 const PlayerDataView: React.FC<TimerCollectionViewProps> = ({ timerCollection, isLoading }) => {
 
     if(isLoading){
-        return <div className="App">Getting the TimerCollection for you</div>;
+        return <Typography variant="h5">Getting the TimerCollection for you</Typography>;
     }
 
     return (
         <>
-            <h2>Timers</h2>
+            <Typography variant="h5">Timers</Typography>
             <p>Bank Interest is {timerCollection.bankInterest.estimateRelative}</p>
             <p>Dark Auction is {timerCollection.darkAuction.estimateRelative}</p>
             <p>New Year event is {timerCollection.newYear.estimateRelative} for {formatDuration(intervalToDuration({start: timerCollection.newYear.estimate, end: timerCollection.newYear.endEstimate}))}</p>

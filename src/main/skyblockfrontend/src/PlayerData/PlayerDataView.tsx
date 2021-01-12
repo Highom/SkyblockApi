@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Typography } from "@material-ui/core";
 import { format, toDate } from "date-fns";
 import React from "react";
 import { PlayerData } from "./PlayerDataInterfaces";
@@ -12,39 +13,39 @@ export interface PlayerDataViewProps{
 const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, isLoading ,username }) => {
 
     if(isLoading){
-        return <h1>Getting the PlayerData for you</h1>;
+        return <Typography variant="h5">Getting the PlayerData for you</Typography>;
     }
 
     let PlayerStatus;
     if (playerData.playerStatus.online) {
         PlayerStatus = (
             <>
-                <p> {username} is Online</p>
-                <p>Map: {playerData.playerStatus.game.map}</p>
-                <p>Gamemode: {playerData.playerStatus.game.mode}</p>
-                <p>Type: {playerData.playerStatus.game.type}</p>
+                <Typography> {username} is Online</Typography>
+                <Typography>Map: {playerData.playerStatus.game.map}</Typography>
+                <Typography>Gamemode: {playerData.playerStatus.game.mode}</Typography>
+                <Typography>Type: {playerData.playerStatus.game.type}</Typography>
             </>
         )
     }else{
         PlayerStatus = (
             <>
-                <p> {username} is Offline</p>
-                <p>Last Game: {playerData.lastGame}</p>
-                <p>Last Online: {format(toDate(playerData.lastLogout), "kk:mm dd/MM/yyyy")}</p>
+                <Typography> {username} is Offline</Typography>
+                <Typography>Last Game: {playerData.lastGame}</Typography>
+                <Typography>Last Online: {format(toDate(playerData.lastLogout), "kk:mm dd/MM/yyyy")}</Typography>
             </>
         )
     }
 
     return (
         <>
-            <h2>{username}&apos;s Global stats</h2>
-            <p>Karma: {playerData.karma}</p>
-            <h2>{username}&apos;s Current Status</h2>
+            <Typography variant="h5">{username}&apos;s Global stats</Typography>
+            <Typography>Karma: {playerData.karma}</Typography>
+            <Typography variant="h5">{username}&apos;s Current Status</Typography>
             {PlayerStatus}
-            <h2>{username}&apos;s Skyblock stats</h2>
-            <p>Coin Purse: {playerData.coinPurse}</p>
-            <p>Total Deaths: {playerData.totalDeaths}</p>
-            <p>Total Kills: {playerData.totalKills}</p>
+            <Typography variant="h5">{username}&apos;s Skyblock stats</Typography>
+            <Typography>Coin Purse: {playerData.coinPurse}</Typography>
+            <Typography>Total Deaths: {playerData.totalDeaths}</Typography>
+            <Typography>Total Kills: {playerData.totalKills}</Typography>
         </>
     );
 };
