@@ -1,13 +1,20 @@
 /* eslint-disable react/prop-types */
+import { format, toDate } from "date-fns";
 import React from "react";
 import { PlayerData } from "./PlayerDataInterfaces";
 
 export interface PlayerDataViewProps{
     playerData: PlayerData;
+    isLoading: boolean;
     username: string | null;
 }
 
-const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, username }) => {
+const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, isLoading ,username }) => {
+
+    if(isLoading){
+        return <h1>Getting the PlayerData for you</h1>;
+    }
+
     let PlayerStatus;
     if (playerData.playerStatus.online) {
         PlayerStatus = (
@@ -23,7 +30,7 @@ const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, username })
             <>
                 <p> {username} is Offline</p>
                 <p>Last Game: {playerData.lastGame}</p>
-                <p>Last Online: {playerData.lastLogout}</p>
+                <p>Last Online: {format(toDate(playerData.lastLogout), "kk:mm dd/MM/yyyy")}</p>
             </>
         )
     }
@@ -32,8 +39,8 @@ const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, username })
         <>
             <h2>{username}&apos;s Global stats</h2>
             <p>Karma: {playerData.karma}</p>
-            <p>{playerData.uuid}</p>
-            {/* <PlayerStatus />  */}
+            <h2>{username}&apos;s Current Status</h2>
+            {PlayerStatus}
             <h2>{username}&apos;s Skyblock stats</h2>
             <p>Coin Purse: {playerData.coinPurse}</p>
             <p>Total Deaths: {playerData.totalDeaths}</p>
