@@ -1,2 +1,3 @@
 - Fix NameDialog and rerender PlayerData on change
+- Add Exact Times to the Timers
 - Add skin renderer
