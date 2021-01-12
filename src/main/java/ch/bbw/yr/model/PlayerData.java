@@ -4,8 +4,6 @@
  */
 package ch.bbw.yr.model;
 
-import ch.bbw.yr.dao.MojangDAO;
-import ch.bbw.yr.model.mojang.UserProfile;
 import zone.nora.slothpixel.Slothpixel;
 import zone.nora.slothpixel.player.Player;
 import zone.nora.slothpixel.player.status.PlayerStatus;
@@ -24,18 +22,15 @@ public class PlayerData {
     private int totalDeaths;
     private int totalKills;
 
-    //Mojang
-    private String uuid;
+    //TODO: get Skin and Cape
 
     public PlayerData(String username) {
         Slothpixel slothpixel = new Slothpixel();
         Player player = slothpixel.getPlayer(username);
-        PlayerStatus playerStatus = slothpixel.getPlayerStatus(username);
-        SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(username);
-        SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(player.getUuid());
-
-        MojangDAO mojangDAO = new MojangDAO();
-        UserProfile userProfile = mojangDAO.getUserProfile(username);
+        String playerUuid = player.getUuid();
+        PlayerStatus playerStatus = slothpixel.getPlayerStatus(playerUuid);
+        SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(playerUuid);
+        SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(playerUuid);
 
         karma = player.getKarma();
         lastLogout = player.getLastLogout();
@@ -44,7 +39,6 @@ public class PlayerData {
         coinPurse = skyblockPlayer.getCoinPurse();
         totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
         totalKills = skyblockPlayer.getStats().getTotalKills();
-        uuid = userProfile.getId();
     }
 
     public int getKarma() {
