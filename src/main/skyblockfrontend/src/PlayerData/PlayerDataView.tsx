@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { format, toDate } from "date-fns";
 import React from "react";
 import { PlayerData } from "./PlayerDataInterfaces";
@@ -38,14 +38,20 @@ const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, isLoading ,
 
     return (
         <>
+        <Box paddingBottom={1}>
             <Typography variant="h5">{username}&apos;s Global stats</Typography>
             <Typography>Karma: {playerData.karma}</Typography>
+        </Box>
+        <Box paddingBottom={1}>
             <Typography variant="h5">{username}&apos;s Current Status</Typography>
             {PlayerStatus}
+        </Box>
+        <Box paddingBottom={1}>
             <Typography variant="h5">{username}&apos;s Skyblock stats</Typography>
             <Typography>Coin Purse: {playerData.coinPurse}</Typography>
             <Typography>Total Deaths: {playerData.totalDeaths}</Typography>
             <Typography>Total Kills: {playerData.totalKills}</Typography>
+        </Box>
         </>
     );
 };

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Button, Dialog, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core";
+import { Box, Button, Dialog, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core";
 import React, { useRef, useState } from "react";
 
 export interface NameDialogViewProps{
@@ -22,9 +22,11 @@ const NameDialogView: React.FC<NameDialogViewProps> = ({ hasName }) => {
 
     return (
         <>
-            <Button onClick={changeName}>
-                change name
-            </Button>
+            <Box paddingBottom={1}>
+                <Button onClick={changeName}>
+                    change name
+                </Button>
+            </Box>
             <Dialog open={isOpen}>
                 <DialogTitle id="form-dialog-title">Enter Username</DialogTitle>
                 <DialogContent>
