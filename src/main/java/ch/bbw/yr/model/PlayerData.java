@@ -97,14 +97,6 @@ public class PlayerData {
         this.totalKills = totalKills;
     }
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
     @Override
     public String toString() {
         return "PlayerData{" +
@@ -115,7 +107,6 @@ public class PlayerData {
                 ", coinPurse=" + coinPurse +
                 ", totalDeaths=" + totalDeaths +
                 ", totalKills=" + totalKills +
-                ", uuid='" + uuid + '\'' +
                 '}';
     }
 }
