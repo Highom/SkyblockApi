@@ -2,6 +2,7 @@
 import { Box, createMuiTheme, Paper, ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import './App.css';
+import NameDialogContainer from './NameDialog/NameDialogContainer';
 import PlayerDataContainer from './PlayerData/PlayerDataContainer';
 import TimerCollectionContainer from './TimerCollection/TimerCollectionContainer';
 
@@ -16,6 +17,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <Paper style={{ height: "100vh" }}>
       <Box className="App">
+        <NameDialogContainer />
         <PlayerDataContainer />
         <TimerCollectionContainer />
       </Box>

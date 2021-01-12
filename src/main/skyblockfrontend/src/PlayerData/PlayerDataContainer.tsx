@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PlayerDataView from "./PlayerDataView";
 import Axios from "axios";
 import { PlayerData } from "./PlayerDataInterfaces";
+import { Typography } from "@material-ui/core";
 
 let playerDataDefined: PlayerData;
 
@@ -12,12 +13,17 @@ const PlayerDataContainer: React.FC = () => {
     const api = "http://localhost:8080";
 
     useEffect(() => {
-        Axios.get<PlayerData>(`${api}/player?username=${username}`).then(( res => {
-             setPlayerData(res.data);
-             setLoading(false);
-            })).catch( err => {console.log(err)});
-
+        if (username !== undefined) {
+            Axios.get<PlayerData>(`${api}/player?username=${username}`).then(( res => {
+                 setPlayerData(res.data);
+                 setLoading(false);
+                })).catch( err => {console.log(err)});            
+        }
     }, []);
+
+    if (username === null) {
+        return <Typography variant="h5">No name specified</Typography>
+    }
 
     if(playerData !== undefined)
     {
