@@ -1,3 +1,5 @@
 - Fix NameDialog and rerender PlayerData on change
-- Add Exact Times to the Timers
+- Add DB to Backend
+- change from Capital to not capital over db for PlayerStatus (really stupid but the only way to get it to work)
 - Add skin renderer
+- change to minecraft font

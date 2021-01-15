@@ -4,6 +4,7 @@ import React from 'react';
 import './App.css';
 import NameDialogContainer from './NameDialog/NameDialogContainer';
 import PlayerDataContainer from './PlayerData/PlayerDataContainer';
+import ServerInfoContainer from './ServerInfo/ServerInfoContainer';
 import TimerCollectionContainer from './TimerCollection/TimerCollectionContainer';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Paper style={{ height: "100vh" }}>
       <Box className="App">
         <NameDialogContainer />
+        <ServerInfoContainer />
         <PlayerDataContainer />
         <TimerCollectionContainer />
       </Box>

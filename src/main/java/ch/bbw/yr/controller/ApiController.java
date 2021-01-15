@@ -4,7 +4,9 @@
  */
 package ch.bbw.yr.controller;
 
+import ch.bbw.yr.dao.ServerDAO;
 import ch.bbw.yr.model.PlayerData;
+import ch.bbw.yr.model.server.ServerInfo;
 import ch.bbw.yr.model.timers.TimerCollection;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,5 +24,13 @@ public class ApiController {
     @GetMapping("/timers")
     public TimerCollection getAllTimers(){
         return new TimerCollection();
+    }
+
+
+    @CrossOrigin
+    @GetMapping("/server")
+    public ServerInfo getServerInfo(){
+        ServerDAO serverDAO = new ServerDAO();
+        return serverDAO.getServerInfo();
     }
 }

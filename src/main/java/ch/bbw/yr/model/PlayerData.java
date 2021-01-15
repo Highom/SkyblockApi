@@ -16,13 +16,12 @@ public class PlayerData {
     private long lastLogout;
     private String lastGame;
     private PlayerStatus playerStatus;
+    private String uuid;
 
     //Skyblock stats
     private double coinPurse;
     private int totalDeaths;
     private int totalKills;
-
-    //TODO: get Skin and Cape
 
     public PlayerData(String username) {
         Slothpixel slothpixel = new Slothpixel();
@@ -39,6 +38,7 @@ public class PlayerData {
         coinPurse = skyblockPlayer.getCoinPurse();
         totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
         totalKills = skyblockPlayer.getStats().getTotalKills();
+        uuid = playerUuid;
     }
 
     public int getKarma() {
@@ -97,16 +97,11 @@ public class PlayerData {
         this.totalKills = totalKills;
     }
 
-    @Override
-    public String toString() {
-        return "PlayerData{" +
-                "karma=" + karma +
-                ", lastLogout=" + lastLogout +
-                ", lastGame='" + lastGame + '\'' +
-                ", playerStatus=" + playerStatus +
-                ", coinPurse=" + coinPurse +
-                ", totalDeaths=" + totalDeaths +
-                ", totalKills=" + totalKills +
-                '}';
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }
