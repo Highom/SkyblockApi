@@ -2,7 +2,6 @@ export interface ServerInfo{
     online: boolean;
     version: Version;
     players: Players;
-    description: string;
 }
 
 export interface Version{

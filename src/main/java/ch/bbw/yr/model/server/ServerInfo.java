@@ -8,7 +8,6 @@ public class ServerInfo {
     private boolean online;
     private Version version;
     private Players players;
-    private  String description;
 
     public boolean isOnline() {
         return online;
@@ -32,13 +31,5 @@ public class ServerInfo {
 
     public void setPlayers(Players players) {
         this.players = players;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }
