@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ApiHistory } from "./HistoryInterface";
 
 export interface HistoryViewProps{
-    history: Array<ApiHistory>;
+    history: ApiHistory[];
     isLoading: boolean;
 }
 

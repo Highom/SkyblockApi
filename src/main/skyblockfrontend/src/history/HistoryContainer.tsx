@@ -7,11 +7,11 @@ let historyDefined: Array<ApiHistory>;
 
 const HistoryContainer: React.FC = () => {
     const [isLoading, setLoading] = useState(true);
-    const [history,setHistory] = useState<Array<ApiHistory>>();
+    const [history,setHistory] = useState<ApiHistory[]>();
     const api = "http://localhost:8080";
 
     useEffect(() => {
-            Axios.get<Array<ApiHistory>>(`${api}/history`).then(( res => {
+            Axios.get<ApiHistory[]>(`${api}/history`).then(( res => {
                  setHistory(res.data);
                  setLoading(false);
                 })).catch( err => {console.log(err)});
