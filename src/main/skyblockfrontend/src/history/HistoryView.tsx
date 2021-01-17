@@ -36,12 +36,14 @@ const HistoryView: React.FC<HistoryViewProps> = ({ history, isLoading }) => {
                 <DialogContent>
                     <List dense={true}>
                     {history.map(
-                        (apiCall,i) =>{
-                            <ListItem key={i}>
-                                <ListItemText
-                                    primary={`Id:${apiCall.id}, request: ${apiCall.request}, answer: ${apiCall.answer}, date:${apiCall.dateCalled}`}
-                                />
-                            </ListItem>
+                        (apiCall,i) => {
+                            return (
+                                <ListItem key={i}>
+                                    <ListItemText
+                                        primary={`Id:${apiCall.id}, request: ${apiCall.request}, answer: ${apiCall.answer}, date:${apiCall.dateCalled}`}
+                                    />
+                                </ListItem>
+                                );
                         }
                     )}
                     </List>
