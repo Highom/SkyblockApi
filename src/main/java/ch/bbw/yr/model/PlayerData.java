@@ -35,9 +35,13 @@ public class PlayerData {
         Gson gson = new Gson();
         apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s",username), gson.toJson(player)));
         String playerUuid = player.getUuid();
-        SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(playerUuid);
+        SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(username);
         apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/skyblock/profile/%s",username), gson.toJson(skyblockProfile)));
         SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(playerUuid);
+
+        PlayerStatus playerStatus = slothpixel.getPlayerStatus(playerUuid);
+        apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s/status", playerUuid), gson.toJson(playerStatus)));
+        this.playerStatus = playerStatus;
 
         karma = player.getKarma();
         lastLogout = player.getLastLogout();
@@ -46,14 +50,6 @@ public class PlayerData {
         totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
         totalKills = skyblockPlayer.getStats().getTotalKills();
         uuid = playerUuid;
-
-        //the UserStatus only seems to work if you change the capitalisation every time so we randomly change the capitalization every time.
-        Random random = new Random();
-        int randomNumber = random.nextInt(username.length());
-        String newUsername = username.substring(0,randomNumber) + username.substring(randomNumber,randomNumber+1).toUpperCase() + username.substring(randomNumber+1);
-        PlayerStatus playerStatus = slothpixel.getPlayerStatus(newUsername);
-        apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s/status", newUsername), gson.toJson(playerStatus)));
-        this.playerStatus = playerStatus;
     }
 
     public int getKarma() {

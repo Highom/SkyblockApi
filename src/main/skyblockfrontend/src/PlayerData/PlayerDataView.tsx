@@ -44,6 +44,7 @@ const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, isLoading ,
         </Box>
         <Box paddingBottom={1}>
             <Typography variant="h5">{username}&apos;s Current Status</Typography>
+            <Typography variant="caption">*This is cached for 10 Mins by Slothpixel</Typography>
             {PlayerStatus}
         </Box>
         <Box paddingBottom={1}>
