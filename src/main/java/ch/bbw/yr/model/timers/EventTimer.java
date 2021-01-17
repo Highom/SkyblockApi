@@ -32,4 +32,13 @@ public class EventTimer extends GenericTimer{
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    @Override
+    public String toString() {
+        return "EventTimer{" +
+                "endEstimate=" + endEstimate +
+                ", endEstimateRelative='" + endEstimateRelative + '\'' +
+                ", active=" + active +
+                "} " + super.toString();
+    }
 }

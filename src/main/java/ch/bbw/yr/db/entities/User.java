@@ -7,12 +7,12 @@ package ch.bbw.yr.db.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table
 @NamedQuery(name="User.getByName", query="SELECT u FROM User u WHERE u.username like :username")
 public class User {
     @Id
     @GeneratedValue
-    @Column(name = "id", unique = true)
+    @Column( unique = true )
     private int id;
 
     private String username;

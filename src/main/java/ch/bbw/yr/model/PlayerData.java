@@ -4,8 +4,11 @@
  */
 package ch.bbw.yr.model;
 
+import ch.bbw.yr.db.entities.ApiRequest;
 import ch.bbw.yr.db.entities.User;
+import ch.bbw.yr.db.repositories.ApiRequestRepository;
 import ch.bbw.yr.db.repositories.UserRepository;
+import com.google.gson.Gson;
 import zone.nora.slothpixel.Slothpixel;
 import zone.nora.slothpixel.player.Player;
 import zone.nora.slothpixel.player.status.PlayerStatus;
@@ -26,10 +29,14 @@ public class PlayerData {
     private int totalKills;
 
     public PlayerData(String username) {
+        ApiRequestRepository apiRequestRepository = new ApiRequestRepository();
         Slothpixel slothpixel = new Slothpixel();
         Player player = slothpixel.getPlayer(username);
+        Gson gson = new Gson();
+        apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s",username), gson.toJson(player)));
         String playerUuid = player.getUuid();
         SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(playerUuid);
+        apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/skyblock/profile/%s",username), gson.toJson(skyblockProfile)));
         SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(playerUuid);
 
         karma = player.getKarma();
@@ -56,7 +63,9 @@ public class PlayerData {
             user.setCapital(true);
         }
         userRepository.updateUser(user);
-        this.playerStatus = slothpixel.getPlayerStatus(newUsername);
+        PlayerStatus playerStatus = slothpixel.getPlayerStatus(newUsername);
+        apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s/status", user), gson.toJson(playerStatus)));
+        this.playerStatus = playerStatus;
     }
 
     public int getKarma() {

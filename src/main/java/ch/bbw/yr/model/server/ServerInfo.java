@@ -32,4 +32,13 @@ public class ServerInfo {
     public void setPlayers(Players players) {
         this.players = players;
     }
+
+    @Override
+    public String toString() {
+        return "ServerInfo{" +
+                "online=" + online +
+                ", version=" + version +
+                ", players=" + players +
+                '}';
+    }
 }

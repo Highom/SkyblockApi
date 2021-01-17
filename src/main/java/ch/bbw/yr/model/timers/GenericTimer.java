@@ -68,4 +68,17 @@ public class GenericTimer {
     public void setNum(Double num) {
         this.num = num;
     }
+
+    @Override
+    public String toString() {
+        return "GenericTimer{" +
+                "success=" + success +
+                ", msg='" + msg + '\'' +
+                ", type='" + type + '\'' +
+                ", queryTime=" + queryTime +
+                ", estimate=" + estimate +
+                ", estimateRelative='" + estimateRelative + '\'' +
+                ", num=" + num +
+                '}';
+    }
 }
