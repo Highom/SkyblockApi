@@ -42,6 +42,7 @@ const NameDialogView: React.FC<NameDialogViewProps> = ({ hasName }) => {
                         type="text"
                         fullWidth
                         required
+                        defaultValue={localStorage.getItem("username")}
                         inputRef={usernameRef}
                     />
                     <Button type="submit" color="primary">
