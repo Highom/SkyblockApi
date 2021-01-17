@@ -1,8 +1,8 @@
-- Add DB to Backend
-- change from Capital to not capital over db for PlayerStatus (really stupid but the only way to get it to work)
+- Add History in backend
+- Add History in frontend
 - Fix NameDialog and rerender PlayerData on change
-- Add skin renderer
 
 __Not needed but cool__
+- Add skin renderer
 - change to minecraft font
 - change the favicon to user's skin

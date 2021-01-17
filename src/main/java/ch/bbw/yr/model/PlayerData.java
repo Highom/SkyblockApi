@@ -4,6 +4,8 @@
  */
 package ch.bbw.yr.model;
 
+import ch.bbw.yr.db.entities.User;
+import ch.bbw.yr.db.repositories.UserRepository;
 import zone.nora.slothpixel.Slothpixel;
 import zone.nora.slothpixel.player.Player;
 import zone.nora.slothpixel.player.status.PlayerStatus;
@@ -27,18 +29,34 @@ public class PlayerData {
         Slothpixel slothpixel = new Slothpixel();
         Player player = slothpixel.getPlayer(username);
         String playerUuid = player.getUuid();
-        PlayerStatus playerStatus = slothpixel.getPlayerStatus(playerUuid);
         SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(playerUuid);
         SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(playerUuid);
 
         karma = player.getKarma();
         lastLogout = player.getLastLogout();
         lastGame = player.getLastGame();
-        this.playerStatus = playerStatus;
         coinPurse = skyblockPlayer.getCoinPurse();
         totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
         totalKills = skyblockPlayer.getStats().getTotalKills();
         uuid = playerUuid;
+
+        //the UserStatus only seems to work if you change the capitalisation every time so we change it after every call.
+        UserRepository userRepository = new UserRepository();
+        User user = userRepository.getUserByName(username);
+        if (user == null){
+          userRepository.createUser(new User(username,true));
+          user = userRepository.getUserByName(username);
+        }
+        String newUsername;
+        if(user.isCapital()){
+          newUsername =  username.substring(0,1).toUpperCase() + username.substring(1);
+          user.setCapital(false);
+        }else {
+            newUsername = username.substring(0,1).toLowerCase() + username.substring(1);
+            user.setCapital(true);
+        }
+        userRepository.updateUser(user);
+        this.playerStatus = slothpixel.getPlayerStatus(newUsername);
     }
 
     public int getKarma() {
