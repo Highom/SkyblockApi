@@ -64,7 +64,7 @@ public class PlayerData {
         }
         userRepository.updateUser(user);
         PlayerStatus playerStatus = slothpixel.getPlayerStatus(newUsername);
-        apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s/status", user), gson.toJson(playerStatus)));
+        apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s/status", newUsername), gson.toJson(playerStatus)));
         this.playerStatus = playerStatus;
     }
 
