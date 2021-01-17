@@ -5,15 +5,15 @@
 package ch.bbw.yr.model;
 
 import ch.bbw.yr.db.entities.ApiRequest;
-import ch.bbw.yr.db.entities.User;
 import ch.bbw.yr.db.repositories.ApiRequestRepository;
-import ch.bbw.yr.db.repositories.UserRepository;
 import com.google.gson.Gson;
 import zone.nora.slothpixel.Slothpixel;
 import zone.nora.slothpixel.player.Player;
 import zone.nora.slothpixel.player.status.PlayerStatus;
 import zone.nora.slothpixel.skyblock.players.SkyblockPlayer;
 import zone.nora.slothpixel.skyblock.profiles.SkyblockProfile;
+
+import java.util.Random;
 
 public class PlayerData {
     //Standard stats
@@ -47,22 +47,10 @@ public class PlayerData {
         totalKills = skyblockPlayer.getStats().getTotalKills();
         uuid = playerUuid;
 
-        //the UserStatus only seems to work if you change the capitalisation every time so we change it after every call.
-        UserRepository userRepository = new UserRepository();
-        User user = userRepository.getUserByName(username);
-        if (user == null){
-          userRepository.createUser(new User(username,true));
-          user = userRepository.getUserByName(username);
-        }
-        String newUsername;
-        if(user.isCapital()){
-          newUsername =  username.substring(0,1).toUpperCase() + username.substring(1);
-          user.setCapital(false);
-        }else {
-            newUsername = username.substring(0,1).toLowerCase() + username.substring(1);
-            user.setCapital(true);
-        }
-        userRepository.updateUser(user);
+        //the UserStatus only seems to work if you change the capitalisation every time so we randomly change the capitalization every time.
+        Random random = new Random();
+        int randomNumber = random.nextInt(username.length());
+        String newUsername = username.substring(0,randomNumber) + username.substring(randomNumber,randomNumber+1).toUpperCase() + username.substring(randomNumber+1);
         PlayerStatus playerStatus = slothpixel.getPlayerStatus(newUsername);
         apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s/status", newUsername), gson.toJson(playerStatus)));
         this.playerStatus = playerStatus;
