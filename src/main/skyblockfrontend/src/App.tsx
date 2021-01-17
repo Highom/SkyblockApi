@@ -2,6 +2,7 @@
 import { Box, createMuiTheme, Paper, ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import './App.css';
+import HistoryContainer from './history/HistoryContainer';
 import NameDialogContainer from './NameDialog/NameDialogContainer';
 import PlayerDataContainer from './PlayerData/PlayerDataContainer';
 import ServerInfoContainer from './ServerInfo/ServerInfoContainer';
@@ -19,6 +20,7 @@ function App() {
       <Paper style={{ height: "100vh" }}>
       <Box className="App">
         <NameDialogContainer />
+        <HistoryContainer />
         <ServerInfoContainer />
         <PlayerDataContainer />
         <TimerCollectionContainer />
