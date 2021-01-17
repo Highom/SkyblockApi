@@ -1,5 +1,8 @@
-- Fix NameDialog and rerender PlayerData on change
 - Add DB to Backend
 - change from Capital to not capital over db for PlayerStatus (really stupid but the only way to get it to work)
+- Fix NameDialog and rerender PlayerData on change
 - Add skin renderer
+
+__Not needed but cool__
 - change to minecraft font
+- change the favicon to user's skin
