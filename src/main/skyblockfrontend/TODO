@@ -1,4 +1,4 @@
-- Fix NameDialog and rerender PlayerData on change
+- rerender PlayerData on change
 
 __Not needed but cool__
 - Add skin renderer

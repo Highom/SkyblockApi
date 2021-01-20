@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Box, Button, Dialog, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 export interface NameDialogViewProps{
     hasName: boolean;
@@ -8,12 +8,12 @@ export interface NameDialogViewProps{
 
 const NameDialogView: React.FC<NameDialogViewProps> = ({ hasName }) => {
     const [isOpen, setOpen] = useState(!hasName);
-    const usernameRef = useRef();
+    const [username, setUsername] = useState("");
 
     const handleSubmit = (event :React.FormEvent) => {
         event.preventDefault();
         setOpen(false);
-        localStorage.setItem("username", "Highom") //FIXME: usernameRef.current.value
+        localStorage.setItem("username", username)
     };
 
     const changeName = () => {
@@ -43,7 +43,7 @@ const NameDialogView: React.FC<NameDialogViewProps> = ({ hasName }) => {
                         fullWidth
                         required
                         defaultValue={localStorage.getItem("username")}
-                        inputRef={usernameRef}
+                        onChange={event => setUsername(event.target.value)}
                     />
                     <Button type="submit" color="primary">
                         Submit
