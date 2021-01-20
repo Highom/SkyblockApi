@@ -36,23 +36,36 @@ const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, isLoading ,
         )
     }
 
+    let SkyblockStats;
+    if (playerData.playsSkyblock){
+        SkyblockStats = (
+            <Box paddingBottom={1}>
+                <Typography variant="h5">{username}&apos;s Skyblock stats</Typography>
+                <Typography>Coin Purse: {playerData.coinPurse}</Typography>
+                <Typography>Total Deaths: {playerData.totalDeaths}</Typography>
+                <Typography>Total Kills: {playerData.totalKills}</Typography>
+            </Box>
+        )
+    }else {
+        SkyblockStats = (
+            <Box paddingBottom={1}>
+                <Typography>{username} has never played Skyblock</Typography>
+            </Box>
+        )
+    }
+
     return (
         <>
-        <Box paddingBottom={1}>
-            <Typography variant="h5">{username}&apos;s Global stats</Typography>
-            <Typography>Karma: {playerData.karma}</Typography>
-        </Box>
-        <Box paddingBottom={1}>
-            <Typography variant="h5">{username}&apos;s Current Status</Typography>
-            <Typography variant="caption">*This is cached for 10 Mins by Slothpixel</Typography>
-            {PlayerStatus}
-        </Box>
-        <Box paddingBottom={1}>
-            <Typography variant="h5">{username}&apos;s Skyblock stats</Typography>
-            <Typography>Coin Purse: {playerData.coinPurse}</Typography>
-            <Typography>Total Deaths: {playerData.totalDeaths}</Typography>
-            <Typography>Total Kills: {playerData.totalKills}</Typography>
-        </Box>
+            <Box paddingBottom={1}>
+                <Typography variant="h5">{username}&apos;s Global stats</Typography>
+                <Typography>Karma: {playerData.karma}</Typography>
+            </Box>
+            <Box paddingBottom={1}>
+                <Typography variant="h5">{username}&apos;s Current Status</Typography>
+                <Typography variant="caption">*This is cached for 10 Mins by Slothpixel</Typography>
+                {PlayerStatus}
+            </Box>
+            {SkyblockStats}
         </>
     );
 };

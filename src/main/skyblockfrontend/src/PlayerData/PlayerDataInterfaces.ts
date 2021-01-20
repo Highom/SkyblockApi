@@ -3,6 +3,7 @@ export interface PlayerData{
     lastLogout: number;
     lastGame: string;
     playerStatus: PlayerStatus;
+    playsSkyblock: boolean;
     coinPurse: number;
     totalDeaths: number;
     totalKills: number;

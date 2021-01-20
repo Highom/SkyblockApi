@@ -24,6 +24,7 @@ public class PlayerData {
     private String uuid;
 
     //Skyblock stats
+    private boolean playsSkyblock = true;
     private double coinPurse;
     private int totalDeaths;
     private int totalKills;
@@ -43,7 +44,8 @@ public class PlayerData {
             totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
             totalKills = skyblockPlayer.getStats().getTotalKills();
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("Problem with SkyblockProfile, probably because the Playe has never played Skyblock");
+            playsSkyblock = false;
         }
 
         PlayerStatus playerStatus = slothpixel.getPlayerStatus(playerUuid);
@@ -118,5 +120,13 @@ public class PlayerData {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public boolean isPlaysSkyblock() {
+        return playsSkyblock;
+    }
+
+    public void setPlaysSkyblock(boolean playsSkyblock) {
+        this.playsSkyblock = playsSkyblock;
     }
 }
