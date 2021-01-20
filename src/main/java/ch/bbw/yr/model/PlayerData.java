@@ -35,9 +35,16 @@ public class PlayerData {
         Gson gson = new Gson();
         apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s",username), gson.toJson(player)));
         String playerUuid = player.getUuid();
-        SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(username);
-        apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/skyblock/profile/%s",username), gson.toJson(skyblockProfile)));
-        SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(playerUuid);
+        try{
+            SkyblockProfile skyblockProfile = slothpixel.getSkyblockProfile(username);
+            apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/skyblock/profile/%s",username), gson.toJson(skyblockProfile)));
+            SkyblockPlayer skyblockPlayer = skyblockProfile.getMembers().get(playerUuid);
+            coinPurse = skyblockPlayer.getCoinPurse();
+            totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
+            totalKills = skyblockPlayer.getStats().getTotalKills();
+        }catch (Exception e){
+            System.out.println(e);
+        }
 
         PlayerStatus playerStatus = slothpixel.getPlayerStatus(playerUuid);
         apiRequestRepository.createApiRequest(new ApiRequest(String.format("https://api.slothpixel.me/api/players/%s/status", playerUuid), gson.toJson(playerStatus)));
@@ -46,9 +53,6 @@ public class PlayerData {
         karma = player.getKarma();
         lastLogout = player.getLastLogout();
         lastGame = player.getLastGame();
-        coinPurse = skyblockPlayer.getCoinPurse();
-        totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
-        totalKills = skyblockPlayer.getStats().getTotalKills();
         uuid = playerUuid;
     }
 
