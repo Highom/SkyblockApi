@@ -5,14 +5,13 @@ import React from "react";
 import { PlayerData } from "./PlayerDataInterfaces";
 
 export interface PlayerDataViewProps{
-    playerData: PlayerData;
-    isLoading: boolean;
+    playerData: PlayerData | undefined;
     username: string | null;
 }
 
-const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, isLoading ,username }) => {
+const PlayerDataView: React.FC<PlayerDataViewProps> = ({ playerData, username }) => {
 
-    if(isLoading){
+    if(playerData == undefined){
         return <Typography variant="h5">Getting the PlayerData for you</Typography>;
     }
 

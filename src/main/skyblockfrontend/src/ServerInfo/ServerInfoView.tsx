@@ -4,13 +4,12 @@ import React from "react";
 import { ServerInfo } from "./ServerInfoInterface";
 
 export interface ServerInfoViewProps{
-    serverInfo: ServerInfo;
-    isLoading: boolean;
+    serverInfo: ServerInfo | undefined;
 }
 
-const ServerInfoView: React.FC<ServerInfoViewProps> = ({ serverInfo, isLoading }) => {
+const ServerInfoView: React.FC<ServerInfoViewProps> = ({ serverInfo }) => {
 
-    if(isLoading){
+    if(serverInfo == undefined){
         return <Typography variant="h5">Getting the ServerInfo for you</Typography>;
     }
 

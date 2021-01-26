@@ -4,19 +4,21 @@ import Axios from "axios";
 import { PlayerData } from "./PlayerDataInterfaces";
 import { Typography } from "@material-ui/core";
 
-let playerDataDefined: PlayerData;
+
+    //Set these from NameDialog
+    // setUsername(username);
+    // localStorage.setItem("username", username)
+    
 
 const PlayerDataContainer: React.FC = () => {
-    const [isLoading, setLoading] = useState(true);
-    const [playerData,setPlayerData] = useState<PlayerData>();
-    const username = localStorage.getItem('username');
+    const [playerData,setPlayerData] = useState<PlayerData | undefined>();
+    const [username,setUsername] = useState(localStorage.getItem('username'));
     const api = "http://localhost:8080";
 
     useEffect(() => {
         if (username !== undefined) {
             Axios.get<PlayerData>(`${api}/player?username=${username}`).then(( res => {
                  setPlayerData(res.data);
-                 setLoading(false);
                 })).catch( err => {console.log(err)});            
         }
     }, []);
@@ -25,12 +27,8 @@ const PlayerDataContainer: React.FC = () => {
         return <Typography variant="h5">No name specified</Typography>
     }
 
-    if(playerData !== undefined)
-    {
-        playerDataDefined = playerData;
-    }
     return (
-        <PlayerDataView playerData={playerDataDefined} isLoading={isLoading} username={username}/>
+        <PlayerDataView playerData={playerData} username={username}/>
     );
 };
 

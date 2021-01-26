@@ -6,13 +6,12 @@ import { Box, Typography } from "@material-ui/core";
 import CountdownView from "./CountdownView";
 
 export interface TimerCollectionViewProps{
-    timerCollection: TimerCollection;
-    isLoading: boolean;
+    timerCollection: TimerCollection | undefined;
 }
 
-const TimerCollectionView: React.FC<TimerCollectionViewProps> = ({ timerCollection, isLoading }) => {
+const TimerCollectionView: React.FC<TimerCollectionViewProps> = ({ timerCollection }) => {
 
-    if(isLoading){
+    if(timerCollection == undefined){
         return <Typography variant="h5">Getting the TimerCollection for you</Typography>;
     }
 

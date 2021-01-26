@@ -14,6 +14,7 @@ const NameDialogView: React.FC<NameDialogViewProps> = ({ hasName }) => {
         event.preventDefault();
         setOpen(false);
         localStorage.setItem("username", username)
+        //Change username in PlayerData
     };
 
     const changeName = () => {

@@ -44,7 +44,7 @@ public class PlayerData {
             totalDeaths = skyblockPlayer.getStats().getTotalDeaths();
             totalKills = skyblockPlayer.getStats().getTotalKills();
         }catch (Exception e){
-            System.out.println("Problem with SkyblockProfile, probably because the Playe has never played Skyblock");
+            System.out.println("Problem with SkyblockProfile, probably because the Player has never played Skyblock");
             playsSkyblock = false;
         }
 
